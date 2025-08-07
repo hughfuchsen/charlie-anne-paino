@@ -11,7 +11,7 @@ function Home() {
         <p className="flex justify-start items-start text-3xl underline" style={{ fontWeight: "bold", fontStyle: "italic" }}>
         picapsso’s diary 1997</p>
         <br />
-        <details className="p-2 text-1xl">
+        <details className="text-1xl">
           <summary className="cursor-pointer">open my cupboards</summary>
           <ul className="ml-6 mt-2 space-y-1 list-disc">
             <li>
@@ -30,7 +30,7 @@ function Home() {
       </div>
 
       <LiveMusicIllustrations/>
-      
+
       <Writings/>
     </>
   );
