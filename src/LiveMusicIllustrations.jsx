@@ -137,7 +137,7 @@ function LiveMusicIllustrations() {
       </div>
 
       {/* Image Grid */}
-      <div className="p-8">
+      {/* <div className="p-8">
         {filteredImages.length === 0 ? (
           <div className="text-center text-gray-500">No results match your filters.</div>
         ) : (
@@ -147,7 +147,34 @@ function LiveMusicIllustrations() {
             ))}
           </div>
         )}
-      </div>
+      </div> */}
+
+        <div className="p-8">
+        {filteredImages.length === 0 ? (
+            <div className="text-center text-gray-500">No results match your filters.</div>
+        ) : (
+            // Group by name
+            Object.entries(
+            filteredImages.reduce((groups, image) => {
+                const groupName = image.name || 'Unknown Name';
+                if (!groups[groupName]) groups[groupName] = [];
+                groups[groupName].push(image);
+                return groups;
+            }, {})
+            ).map(([name, images]) => (
+            <div key={name} className="">
+                <p className="text-sm md:text-xl">{name}</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {images.map(({ id, src, alt }) => (
+                    <ImageCard key={id} src={src} alt={alt} />
+                ))}
+                </div>
+            </div>
+            ))
+        )}
+        </div>
+
+
     </div>
   );
 }
