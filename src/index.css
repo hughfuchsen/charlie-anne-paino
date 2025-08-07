@@ -5,9 +5,24 @@
 
 :root{
     color: #000aff;
+    /* background-color: #f6ec81; */
 }
+
+::selection {
+    background-color: #000aff;
+    color: white;
+  }
 
 body {
     font-family: 'Space Mono', monospace;
-  }
+    background-color: white;
+}
+
+img{
+    color: #000aff;
+    /* background-color: #f6ec81; */
+}
+
+
+
   

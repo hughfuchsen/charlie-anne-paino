@@ -1,38 +1,37 @@
 import React from 'react'
-import images from './imageData.js'; 
-import ImageCard from './components/ImageCard';
-
+import LiveMusicIllustrations from './LiveMusicIllustrations'
+import Writings from './Writings'
 
 function Home() {
   return (
     <>
-      <div className="p-8 min-h-screen " style={{ backgroundColor: "#f6ec81" }}>
+      <div className="p-8" 
+      style={{ backgroundColor: "white" }}
+      >
         <p className="flex justify-start items-start text-3xl underline" style={{ fontWeight: "bold", fontStyle: "italic" }}>
         picapsso’s diary 1997</p>
         <br />
-        <details className="p-2">
+        <details className="p-2 text-1xl">
           <summary className="cursor-pointer">open my cupboards</summary>
           <ul className="ml-6 mt-2 space-y-1 list-disc">
             <li>
-              <a href="/live-music-illustrations" className="underline hover:no-underline">
-                live music illustrations
-              </a>
+              <p className="underline hover:no-underline">
+                Live Music Illustrations
+              </p>
             </li>
             <li>
-              <a href="/writings" className="underline hover:no-underline">
-                writings
-              </a>
+              <p className="underline hover:no-underline">
+                Writings
+              </p>
             </li>
           </ul>
         </details>
 
       </div>
 
-      {/* <div className="grid grid-cols-5 gap-4">
-        {images.map(({ id, src, alt }) => (
-          <ImageCard key={id} src={src} alt={alt} />
-        ))}
-      </div> */}
+      <LiveMusicIllustrations/>
+      
+      <Writings/>
     </>
   );
 }

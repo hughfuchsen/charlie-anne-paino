@@ -1,6 +1,9 @@
+import React from 'react';
+
+
 export default function ImageCard({ src, alt }) {
     return (
-      <div className="aspect-[148/210] overflow-hidden rounded-md shadow-md">
+      <div className="aspect-[148/210] overflow-hidden">
         {/* A5 aspect ratio approx 148mm x 210mm → ratio 148/210 */}
         <img
           src={src}
