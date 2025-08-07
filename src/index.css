@@ -5,6 +5,7 @@
 
 :root{
     color: #000aff;
+    /* color: black; */
     /* background-color: #f6ec81; */
 }
 
@@ -13,7 +14,7 @@
     color: white;
   }
 
-body {
+html {
     font-family: 'Space Mono', monospace;
     background-color: white;
 }
