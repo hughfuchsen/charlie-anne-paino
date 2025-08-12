@@ -172,7 +172,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import images from './imageData.js'; 
 import ImageCard from './ImageCard';
 import ExpandedGallery from './ExpandedGallery';
@@ -210,6 +210,21 @@ function LiveMusicIllustrations() {
   const [openCategory, setOpenCategory] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
+
+  useEffect(() => {
+    if (isExpanded) {
+      // Disable scrolling
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Re-enable scrolling
+      document.body.style.overflow = '';
+    }
+
+    // Cleanup on unmount just in case
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isExpanded]);
   
 
   const filterOptions = groupByCategory(images);
