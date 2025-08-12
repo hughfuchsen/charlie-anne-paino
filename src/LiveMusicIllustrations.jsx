@@ -267,12 +267,13 @@ function LiveMusicIllustrations() {
     const orderedImages = Object.entries(groupedByName)
     .flatMap(([_name, imgs]) => imgs);
 
-  const showPrev = () => {
-    setStartIndex((i) => (i === 0 ? images.length - 1 : i - 1));
-  };
-  const showNext = () => {
-    setStartIndex((i) => (i === images.length - 1 ? 0 : i + 1));
-  };
+    const showPrev = () => {
+        setStartIndex((i) => (i === 0 ? orderedImages.length - 1 : i - 1));
+    };
+      
+      const showNext = () => {
+        setStartIndex((i) => (i === orderedImages.length - 1 ? 0 : i + 1));
+    };
 
   // Flatten filteredImages for easy index lookup in gallery
   // We'll pass filteredImages directly to ExpandedGallery
@@ -374,16 +375,17 @@ function LiveMusicIllustrations() {
 
 
 
-      {/* Expanded Gallery Overlay */}
-      {isExpanded && (
+        {/* Expanded Gallery Overlay */}
+        {isExpanded && (
         <ExpandedGallery
-          images={filteredImages}
-          currentIndex={startIndex}
-          onClose={() => setIsExpanded(false)}
-          onPrev={showPrev}
-          onNext={showNext}
+            images={orderedImages} // use the same ordering as the grid
+            currentIndex={startIndex}
+            onClose={() => setIsExpanded(false)}
+            onPrev={showPrev}
+            onNext={showNext}
         />
-      )}
+        )}
+
     </div>
   );
 }
