@@ -4,13 +4,13 @@
 
 
 :root{
-    color: #000aff;
+    color: black;
     /* color: black; */
     /* background-color: #f6ec81; */
 }
 
 ::selection {
-    background-color: #000aff;
+    background-color: black;
     color: white;
   }
 
@@ -20,7 +20,8 @@ html {
 }
 
 img{
-    color: #000aff;
+    /* color: #000aff; */
+    color: black;
     /* background-color: #f6ec81; */
 }
 
