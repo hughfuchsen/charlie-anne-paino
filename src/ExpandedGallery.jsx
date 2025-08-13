@@ -63,7 +63,7 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
 
       {/* Next Arrow */}
       <button
-        className="absolute right-4 text-white text-4xl"
+        className="absolute right-4 text-white text-4xl select-none"
         onClick={(e) => {
           e.stopPropagation();
           onNext();
@@ -74,7 +74,7 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
 
       {/* Caption */}
       {formatCaption(img) && (
-        <p className="text-white mt-4 text-center">
+        <p className="text-white mt-4 text-center select-none">
           {formatCaption(img)}
         </p>
       )}
