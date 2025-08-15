@@ -104,7 +104,7 @@ export default function Writings() {
         {selectedStory ? (
           <article>
             <p className="text-left text-xl md:text-2xl mb-8">{selectedStory.title}</p>
-            {selectedStory?.imageUrl && (
+            {selectedStory.imageUrl && (
             <img
               src={selectedStory.imageUrl}
               alt={selectedStory.title}
