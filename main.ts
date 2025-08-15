@@ -11,7 +11,7 @@ async function handler(req: Request): Promise<Response> {
 
   // Serve favicon if requested
   if (pathname === "/favicon.ico") {
-    const faviconPath = "../dist/favicon.ico";
+    const faviconPath = "./dist/favicon.ico";
     console.log(`Trying favicon at: ${faviconPath}`);
     try {
       return await serveFile(req, faviconPath);
@@ -23,7 +23,7 @@ async function handler(req: Request): Promise<Response> {
   // Serve static files from ../dist
   try {
     const response = await serveDir(req, {
-      fsRoot: "../dist",
+      fsRoot: "./dist",
       urlRoot: "",
       showDirListing: false,
       enableCors: true,
@@ -41,7 +41,7 @@ async function handler(req: Request): Promise<Response> {
   }
 
   // SPA fallback: serve index.html
-  const indexPath = "../dist/index.html";
+  const indexPath = "./dist/index.html";
   console.log(`Serving SPA fallback: ${indexPath}`);
   return await serveFile(req, indexPath);
 }
