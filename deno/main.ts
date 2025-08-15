@@ -5,13 +5,18 @@ const PORT = Number(Deno.env.get("PORT")) || 3000;
 
 async function handler(req: Request): Promise<Response> {
   const url = new URL(req.url);
-  const pathname = url.pathname;
+  let pathname = url.pathname;
 
-  console.log(`Request for: ${pathname}`); // log the incoming path
+  // Normalize path: remove trailing slash except for root
+  if (pathname !== "/" && pathname.endsWith("/")) {
+    pathname = pathname.slice(0, -1);
+  }
+
+  console.log(`Request for: ${pathname}`);
 
   // Serve favicon if requested
   if (pathname === "/favicon.ico") {
-    const faviconPath = "./dist/favicon.ico";
+    const faviconPath = "../dist/favicon.ico";
     console.log(`Trying favicon at: ${faviconPath}`);
     try {
       return await serveFile(req, faviconPath);
@@ -23,7 +28,7 @@ async function handler(req: Request): Promise<Response> {
   // Serve static files from ../dist
   try {
     const response = await serveDir(req, {
-      fsRoot: "./dist",
+      fsRoot: "../dist",
       urlRoot: "",
       showDirListing: false,
       enableCors: true,
@@ -40,8 +45,8 @@ async function handler(req: Request): Promise<Response> {
     console.error("serveDir error:", err);
   }
 
-  // SPA fallback: serve index.html
-  const indexPath = "./dist/index.html";
+  // SPA fallback: serve index.html for all unknown routes
+  const indexPath = "../dist/index.html";
   console.log(`Serving SPA fallback: ${indexPath}`);
   return await serveFile(req, indexPath);
 }
