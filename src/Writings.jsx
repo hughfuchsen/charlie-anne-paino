@@ -1,52 +1,6 @@
-// import React, { useEffect, useState } from 'react';
-// import NavMenu from './NavMenu';
-// import { client } from './sanityClient';
-// import { PortableText } from '@portabletext/react';
-
-// export default function Writings() {
-//   const [writings, setWritings] = useState([]);
-
-//   useEffect(() => {
-//     client.fetch(
-//       `*[_type == "post"] | order(publishedAt desc) {
-//         _id,
-//         title,
-//         body,
-//         "imageUrl": mainImage.asset->url
-//       }`
-//     ).then(setWritings);
-//   }, []);
-
-//   return (
-//     <div className="bg-white">
-//       <NavMenu onShuffle={() => setShuffledImages(shuffleArray(images))}/>
-//       <div className="p-8">
-//         {writings.map(writing => (
-//           <article key={writing._id} style={{ marginBottom: '3rem' }}>
-//             <p className="text-sm md:text-xl mb-2">{writing.title}</p>
-//             {writing.imageUrl && (
-//               <img src={writing.imageUrl} alt={writing.title} style={{ maxWidth: '100%' }} />
-//             )}
-//             <PortableText
-//               value={writing.body}
-//               components={{
-//                 block: {
-//                   // render normal paragraph
-//                   normal: ({ children }) => <p style={{ marginBottom: '1em' }}>{children}</p>,
-//                 },
-//               }}
-//             />
-//           </article>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-
 import React, { useEffect, useState } from 'react';
 import { client } from './sanityClient';
-import { urlFor } from './imageUrlBuilder';
+import { POSTS_QUERY } from './query';
 import NavMenu from './NavMenu';
 import { PortableText } from '@portabletext/react';
 
@@ -55,24 +9,7 @@ export default function Writings() {
   const [selectedId, setSelectedId] = useState(null); // ID of the story being viewed
 
   useEffect(() => {
-    client
-      .fetch(
-        `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...12] {
-          _id,
-          title,
-          slug,
-          publishedAt,
-          mainImage {
-            asset-> {
-              _id,
-              url
-            },
-            alt
-          },
-          body
-        }`
-      )
-      .then(setWritings);
+    client.fetch(POSTS_QUERY).then(setWritings).catch(console.error);
   }, []);
   
 
@@ -127,14 +64,14 @@ export default function Writings() {
         {selectedStory ? (
           <article>
             <p className="text-left text-xl md:text-2xl mb-8">{selectedStory.title}</p>
-            {selectedStory.mainImage && (
+            {selectedStory.imageUrl && (
               <img
-                src={selectedStory.mainImage.asset.url}
-                alt={selectedStory.mainImage.alt || selectedStory.title}
+                src={selectedStory.imageUrl}
+                alt={selectedStory.title}
                 style={{ maxWidth: '100%', marginBottom: '1em' }}
               />
             )}
-            <PortableText value={selectedStory.body} components={portableComponents} />
+            <PortableText value={selectedStory.body} components={portableComponents}/>
           </article>
         ) : (
           // Otherwise, show list of titles
