@@ -86,8 +86,23 @@ export default function Writings() {
 
   return (
     <div className="bg-white min-h-screen">
-      <NavMenu onShuffle={() => setShuffledImages(shuffleArray(images))}/>
-      <div className="p-8 pt-0 text-3xl md:text-8xl">Writings</div>
+      <NavMenu
+        onShuffle={() => setShuffledImages(shuffleArray(images))}
+        onResetStory={() => setSelectedId(null)} // reset selected story
+        currentStoryTitle={selectedStory ? selectedStory.title : null}
+      />     
+
+      {selectedStory && (<div className="p-8 pt-0 text-xl md:text-3xl">{selectedStory.publishedAt
+        ? new Date(selectedStory.publishedAt).toLocaleDateString('en-AU', {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric',
+          })
+        : ''}
+        </div>)}
+
+      {selectedStory ? <div className="p-8 pt-0 text-3xl md:text-8xl">{selectedStory.title}</div> 
+      : (<div className="p-8 pt-0 text-3xl md:text-8xl">Writings</div>)}
 
       <div className="p-8">
         {/* Back button if a story is open */}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function NavMenu({ onShuffle }) {
+function NavMenu({ onShuffle, onResetStory }) {
   return (
     <div className="p-8 bg-[white]">
       <Link
@@ -14,7 +14,7 @@ function NavMenu({ onShuffle }) {
       </Link>
 
       <br />
-      <details className="text-1xl open">
+      <details className="text-1xl" open>
         <summary className="cursor-pointer">
           open my cupboards
         </summary>
@@ -25,7 +25,7 @@ function NavMenu({ onShuffle }) {
             </Link>
           </li>
           <li>
-            <Link to="/writings" className="underline hover:no-underline">
+            <Link to="/writings" className="underline hover:no-underline" onClick={onResetStory}>
               Writings
             </Link>
           </li>
