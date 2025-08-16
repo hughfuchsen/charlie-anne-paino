@@ -46,6 +46,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { client } from './sanityClient';
+import { urlFor } from './imageUrlBuilder';
 import NavMenu from './NavMenu';
 import { PortableText } from '@portabletext/react';
 
@@ -119,13 +120,13 @@ export default function Writings() {
         {selectedStory ? (
           <article>
             <p className="text-left text-xl md:text-2xl mb-8">{selectedStory.title}</p>
-            {selectedStory.imageUrl && (
-            <img
-              src={selectedStory.imageUrl}
-              alt={selectedStory.title}
-              style={{ maxWidth: '100%', marginBottom: '1em' }}
-            />
-          )}
+            {selectedStory.mainImage && (
+              <img
+                src={urlFor(selectedStory.mainImage).url()}
+                alt={selectedStory.title}
+                style={{ maxWidth: '100%', marginBottom: '1em' }}
+              />
+            )}
             <PortableText value={selectedStory.body} components={portableComponents} />
           </article>
         ) : (
