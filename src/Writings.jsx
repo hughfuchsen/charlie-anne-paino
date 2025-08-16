@@ -57,12 +57,19 @@ export default function Writings() {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == "post"] | order(publishedAt desc){
+        `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...12] {
           _id,
           title,
-          body,
+          slug,
           publishedAt,
-          "imageUrl": mainImage.asset->url
+          mainImage {
+            asset-> {
+              _id,
+              url
+            },
+            alt
+          },
+          body
         }`
       )
       .then(setWritings);
@@ -93,7 +100,7 @@ export default function Writings() {
         currentStoryTitle={selectedStory ? selectedStory.title : null}
       />     
 
-      {selectedStory && (<div className="p-8 pt-0 text-xl md:text-3xl">{selectedStory.publishedAt
+      {selectedStory && (<div className="p-8 text-xl md:text-3xl">{selectedStory.publishedAt
         ? new Date(selectedStory.publishedAt).toLocaleDateString('en-AU', {
             month: 'numeric',
             day: 'numeric',
@@ -102,8 +109,8 @@ export default function Writings() {
         : ''}
         </div>)}
 
-      {selectedStory ? <div className="p-8 pt-0 text-3xl md:text-8xl">{selectedStory.title}</div> 
-      : (<div className="p-8 pt-0 text-3xl md:text-8xl">Writings</div>)}
+      {selectedStory ? <div className="p-8 text-3xl md:text-8xl">{selectedStory.title}</div> 
+      : (<div className="p-8 text-3xl md:text-8xl">Writings</div>)}
 
       <div className="p-8">
         {/* Back button if a story is open */}
@@ -122,8 +129,8 @@ export default function Writings() {
             <p className="text-left text-xl md:text-2xl mb-8">{selectedStory.title}</p>
             {selectedStory.mainImage && (
               <img
-                src={urlFor(selectedStory.mainImage).url()}
-                alt={selectedStory.title}
+                src={selectedStory.mainImage.asset.url}
+                alt={selectedStory.mainImage.alt || selectedStory.title}
                 style={{ maxWidth: '100%', marginBottom: '1em' }}
               />
             )}
