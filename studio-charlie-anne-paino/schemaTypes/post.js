@@ -15,8 +15,8 @@ export default {
       of: [{ type: 'block' }], // Portable Text for formatting + line breaks
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       options: { hotspot: true },
     },

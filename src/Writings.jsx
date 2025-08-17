@@ -63,15 +63,17 @@ export default function Writings() {
         {/* If a story is selected, show it */}
         {selectedStory ? (
           <article>
-            <p className="text-left text-xl md:text-2xl mb-8">{selectedStory.title}</p>
-            {selectedStory.imageUrl && (
+            {/* <p className="text-left text-xl md:text-2xl mb-8">{selectedStory.title}</p> */}
+            {selectedStory.image && (
               <img
-                src={selectedStory.imageUrl}
+                src={selectedStory.image.asset.url}
                 alt={selectedStory.title}
                 style={{ maxWidth: '100%', marginBottom: '1em' }}
               />
             )}
-            <PortableText value={selectedStory.body} components={portableComponents}/>
+            <div className="text-lg md:text-xl leading-loose">
+            <PortableText value={selectedStory.body} components={portableComponents} />
+          </div>
           </article>
         ) : (
           // Otherwise, show list of titles

@@ -5,6 +5,9 @@ export const POSTS_QUERY = `*[
   title,
   slug,
   publishedAt,
-  "imageUrl": mainImage.asset->url,
-  body
+  image{
+    asset->{ url },
+    alt
+  },
+    body
 }`;
