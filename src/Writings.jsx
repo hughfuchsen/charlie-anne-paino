@@ -37,7 +37,7 @@ export default function Writings() {
         currentStoryTitle={selectedStory ? selectedStory.title : null}
       />     
 
-      {selectedStory && (<div className="p-8 text-xl md:text-3xl">{selectedStory.publishedAt
+      {selectedStory && (<div className="p-8 pt-0 text-xl md:text-3xl">{selectedStory.publishedAt
         ? new Date(selectedStory.publishedAt).toLocaleDateString('en-AU', {
             month: 'numeric',
             day: 'numeric',
