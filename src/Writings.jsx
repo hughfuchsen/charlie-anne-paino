@@ -54,7 +54,7 @@ export default function Writings() {
         {selectedStory && (
           <button
             onClick={() => setSelectedId(null)}
-            className="mb-8"
+            className="mb-4"
           >
             ← Back
           </button>
@@ -68,8 +68,8 @@ export default function Writings() {
               <img
                 src={selectedStory.image.asset.url}
                 alt={selectedStory.title}
-                style={{ maxWidth: '100%', marginBottom: '1em' }}
-              />
+                className="max-w-[100%] md:max-w-[40%] mb-4"
+                />
             )}
             <div className="text-lg md:text-xl leading-loose">
             <PortableText value={selectedStory.body} components={portableComponents} />
@@ -99,7 +99,14 @@ export default function Writings() {
           ))}
         </ul>
         )}
-      </div>
+        {selectedStory && (
+          <button
+            onClick={() => setSelectedId(null)}
+            className="mt-8"
+          >
+            ← Back
+          </button>
+        )}      </div>
     </div>
   );
 }
