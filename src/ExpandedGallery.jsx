@@ -34,7 +34,7 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
     >
       {/* Prev Button */}
       <button
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 p-32 sm:pl-4 lg:pl-52  text-white text-6xl rounded-full opacity-0 sm:opacity-100"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 pr-0 pb-40 pt-40 pl-20   text-white text-6xl rounded-full opacity-0 sm:opacity-100"
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
       >
         ←
@@ -42,7 +42,7 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
 
       {/* Next Button */}
       <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 p-32 sm:pr-4 lg:pr-52  text-white text-6xl rounded-full opacity-0 sm:opacity-100"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 pl-0 pb-40 pt-40 pr-20 sm:pl-0 lg:pr-52  text-white text-6xl rounded-full opacity-0 sm:opacity-100"
         onClick={(e) => { e.stopPropagation(); onNext(); }}
       >
         →
