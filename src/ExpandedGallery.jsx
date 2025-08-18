@@ -32,7 +32,12 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
       className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
       onClick={onClose} // click outside closes
     >
-      {/* Prev Button */}
+      {/* FAKE Prev Button */}
+      <div
+        className="absolute left-1 top-1/2 transform -translate-y-1/2 text-white text-1xl rounded-full opacity-100 sm:opacity-0">
+        ←
+      </div>
+      {/* Real Prev Button */}
       <button
         className="absolute left-0 top-1/2 transform -translate-y-1/2 pr-0 pb-40 pt-40 pl-20   text-white text-6xl rounded-full opacity-0 sm:opacity-100"
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
@@ -40,7 +45,13 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
         ←
       </button>
 
-      {/* Next Button */}
+      {/* FAKE Next Button */}
+      <div
+        className="absolute right-1 top-1/2 transform -translate-y-1/2 text-white text-1xl rounded-full opacity-100 sm:opacity-0">
+        →
+      </div>
+      
+      {/* Real Next Button */}
       <button
         className="absolute right-0 top-1/2 transform -translate-y-1/2 pl-0 pb-40 pt-40 pr-20 sm:pl-0 lg:pr-52  text-white text-6xl rounded-full opacity-0 sm:opacity-100"
         onClick={(e) => { e.stopPropagation(); onNext(); }}
