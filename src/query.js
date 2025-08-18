@@ -11,3 +11,16 @@ export const POSTS_QUERY = `*[
   },
     body
 }`;
+
+// query.js
+export const ILLUSTRATIONS_QUERY = `*[_type == "illustration"] | order(date desc) {
+  _id,
+  subject,
+  location,
+  date,
+  image{
+    asset->{ url },
+    alt
+  }
+}`;
+

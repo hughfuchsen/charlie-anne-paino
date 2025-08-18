@@ -1,5 +1,5 @@
 import post from './post'
-import image from './image';
+import image from './illustration';
 
 export const schemaTypes = [post, image]
 

@@ -1,19 +1,20 @@
-const images = [
-  { id: 1, src: '/img/img2.png', alt: '', name: 'Hugh', location: 'The Grace Darling', date: '12-3-2024' },
-  { id: 2, src: '/img/img1.png', alt: '', name: 'Hugh', location: 'Old Bar', date: '12-5-2023' },
-  { id: 3, src: '/img/img1.png', alt: '', name: 'Charlie', location: 'Old Bar', date: '1-4-2022' },
-  { id: 4, src: '/img/img2.png', alt: '', name: 'Charlie', location: 'Old Bar', date: '12-3-2024' },
-  { id: 5, src: '/img/img1.png', alt: '', name: 'Hugh', location: 'The Grace Darling', date: '12-3-2024' },
-  { id: 6, src: '/img/img2.png', alt: '', name: 'Bob', location: 'Old Bar', date: '12-3-2024' },
-  { id: 7, src: '/img/img1.png', alt: '', name: 'Pond', location: 'Old Bar', date: '12-3-2024' },
-  { id: 8, src: '/img/img1.png', alt: '', name: 'Pond', location: 'Old Bar', date: '1-4-2022' },
-  { id: 9, src: '/img/img2.png', alt: '', name: 'Propaine', location: 'Old Bar', date: '1-4-2022' },
-  { id: 10, src: '/img/img1.png', alt: '', name: 'Propaine', location: 'Old Bar', date: '1-4-2022' },
-  { id: 11, src: '/img/img1.png', alt: '', name: 'Propaine', location: 'Old Bar', date: '1-4-2022' },
-  { id: 12, src: '/img/img1.png', alt: '', name: 'Propaine', location: 'Old Bar', date: '' },
-  { id: 13, src: '/img/img1.png', alt: '', name: 'Propaine', location: 'Old Bar', date: '' },
-  { id: 14, src: '/img/img1.png', alt: '', name: 'Hugh', location: 'Old Bar', date: '' },
-  { id: 15, src: '/img/img1.png', alt: '', name: 'Charlie', location: 'Old Bar', date: '' },
-];
+// imageData.js
+import { client } from './sanityClient';
+import { ILLUSTRATIONS_QUERY } from './query';
 
-export default images;
+// Fetch images from Sanity
+export async function fetchImages() {
+  const data = await client.fetch(ILLUSTRATIONS_QUERY);
+
+  // Map to your grid-friendly format
+  return data.map(img => ({
+    id: img._id,
+    src: img.image.asset.url,
+    alt: img.image.alt || '',
+    name: img.subject || '',
+    location: img.location || '',
+    date: img.date
+      ? new Date(img.date).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })
+      : '',
+  }));
+}
