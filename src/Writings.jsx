@@ -80,26 +80,32 @@ export default function Writings() {
         ) : (
           // Otherwise, show list of titles
           <ul>
-          {writings.map((writing) => (
-            <li key={writing._id} className="mb-3">
-              <button
-                onClick={() => setSelectedId(writing._id)}
-                className="w-full flex justify-between items-center text-sm md:text-xl px-2 py-1 border-b border-black"
-              >
-                <span className="text-left">{writing.title}</span>
-                <span className="text-right uppercase text-xl md:text-3xl">
-                  {writing.publishedAt
-                    ? new Date(writing.publishedAt).toLocaleDateString('en-AU', {
-                        month: 'long',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })
-                    : 'NO DATE'}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
+            {writings.map((writing) => (
+              <li key={writing._id} className="mb-3">
+                <button
+                  onClick={() => setSelectedId(writing._id)}
+                  className="w-full flex justify-between items-center text-sm md:text-xl px-2 py-1 border-b border-black"
+                >
+                  <span className="text-left">{writing.title}</span>
+                  <span className="text-right uppercase text-xl md:text-3xl">
+                    {writing.publishedAt ? (
+                      <span className="block md:inline text-right">
+                        {new Date(writing.publishedAt).toLocaleDateString('en-AU', {
+                          day: 'numeric',
+                          month: 'long',
+                        })}
+                        <br className="md:hidden" />
+                        {new Date(writing.publishedAt).getFullYear()}
+                      </span>
+                    ) : (
+                      'NO DATE'
+                    )}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+
         )}
         {selectedStory && (
           <button
