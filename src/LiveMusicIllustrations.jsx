@@ -91,7 +91,7 @@ function LiveMusicIllustrations() {
     <div className="bg-white">
       <NavMenu />
 
-      <div className="p-8 pt-0 text-2xl md:text-6xl">Live Illustrations</div>
+      <div className="p-8 pt-0 text-2xl md:text-5xl">live illustrations</div>
 
       {/* Category Filter Buttons */}
       <div className="flex flex-wrap p-8 pb-4 pt-0 gap-4">
@@ -138,7 +138,7 @@ function LiveMusicIllustrations() {
       </div>
 
       {/* Image Grid */}
-      <div className="p-8 space-y-8">
+      <div className="p-8 pt-4 space-y-8">
         {orderedImages.length === 0 ? (
           <div>No results match your filters.</div>
         ) : (

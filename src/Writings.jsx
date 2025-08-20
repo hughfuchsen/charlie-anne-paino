@@ -39,8 +39,8 @@ export default function Writings() {
 
 
 
-      {selectedStory ? <div className="p-8 text-3xl md:text-8xl">{selectedStory.title}</div> 
-      : (<div className="p-8 text-3xl md:text-6xl">Writings</div>)}
+      {selectedStory ? <div className="p-8 pt-0 text-3xl md:text-6xl lowercase">{selectedStory.title}</div> 
+      : (<div className="p-8 pt-0 text-3xl md:text-5xl">writings</div>)}
 
       {selectedStory && (<div className="p-8 pt-0 text-xl md:text-3xl">{selectedStory.publishedAt
         ? new Date(selectedStory.publishedAt).toLocaleDateString('en-AU', {
@@ -51,14 +51,14 @@ export default function Writings() {
         : ''}
         </div>)}
 
-      <div className="p-8">
+      <div className="p-8 pt-0">
         {/* Back button if a story is open */}
         {selectedStory && (
           <button
             onClick={() => setSelectedId(null)}
-            className="mb-4"
+            className="mb-8"
           >
-            ← Back
+            ← back
           </button>
         )}
 
@@ -70,10 +70,10 @@ export default function Writings() {
               <img
                 src={selectedStory.image.asset.url}
                 alt={selectedStory.title}
-                className="max-w-[100%] md:max-w-[40%] mb-4"
+                className="max-w-[100%] md:max-w-[40%] mb-8"
                 />
             )}
-            <div className="text-lg md:text-xl leading-loose">
+            <div className="text-lg md:text-xl leading-loose lowercase">
             <PortableText value={selectedStory.body} components={portableComponents} />
           </div>
           </article>
@@ -86,8 +86,8 @@ export default function Writings() {
                   onClick={() => setSelectedId(writing._id)}
                   className="w-full flex justify-between items-center text-sm md:text-xl px-2 py-1 border-b border-black"
                 >
-                  <span className="text-left">{writing.title}</span>
-                  <span className="text-right uppercase text-xl md:text-3xl">
+                  <span className="text-left block md:inline text-xl lowercase">{writing.title}</span>
+                  <span className="text-right uppercase text-xl md:text-3xl ml-4">
                     {writing.publishedAt ? (
                       <span className="block md:inline text-right">
                         {new Date(writing.publishedAt).toLocaleDateString('en-AU', {
@@ -95,10 +95,11 @@ export default function Writings() {
                           month: 'long',
                         })}
                         <br className="md:hidden" />
-                        {new Date(writing.publishedAt).getFullYear()}
+                        <span className="md:hidden" > </span> {new Date(writing.publishedAt).getFullYear()}
                       </span>
                     ) : (
-                      'NO DATE'
+                      // 'NO DATE'
+                      ''
                     )}
                   </span>
                 </button>
@@ -112,7 +113,7 @@ export default function Writings() {
             onClick={() => setSelectedId(null)}
             className="mt-8"
           >
-            ← Back
+            ← back
           </button>
         )}      </div>
     </div>
