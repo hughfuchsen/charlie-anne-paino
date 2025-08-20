@@ -26,5 +26,16 @@ img{
 }
 
 
+/* Hide the browser’s built-in disclosure triangle */
+summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::marker {
+    display: none;
+  }
+/*   
+details[open] .summary-icon {
+    transform: rotate(90deg);
+  } */
 
   

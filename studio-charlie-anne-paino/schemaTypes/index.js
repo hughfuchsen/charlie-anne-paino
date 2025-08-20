@@ -1,6 +1,6 @@
-import post from './post'
+import writings from './writings'
 import image from './illustration';
 
-export const schemaTypes = [post, image]
+export const schemaTypes = [writings, image]
 
   

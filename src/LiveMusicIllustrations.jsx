@@ -284,7 +284,7 @@ function LiveMusicIllustrations() {
     <div className="bg-white">
       <NavMenu />
 
-      <div className="p-8 pt-0 text-3xl md:text-8xl">Live Music Illustrations</div>
+      <div className="p-8 pt-0 text-2xl md:text-6xl">Live Illustrations</div>
 
       {/* Category Filter Buttons */}
       <div className="flex flex-wrap p-8 pb-4 pt-0 gap-4">

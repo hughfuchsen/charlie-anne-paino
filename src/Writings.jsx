@@ -40,7 +40,7 @@ export default function Writings() {
 
 
       {selectedStory ? <div className="p-8 text-3xl md:text-8xl">{selectedStory.title}</div> 
-      : (<div className="p-8 text-3xl md:text-8xl">Writings</div>)}
+      : (<div className="p-8 text-3xl md:text-6xl">Writings</div>)}
 
       {selectedStory && (<div className="p-8 pt-0 text-xl md:text-3xl">{selectedStory.publishedAt
         ? new Date(selectedStory.publishedAt).toLocaleDateString('en-AU', {
@@ -50,7 +50,7 @@ export default function Writings() {
           })
         : ''}
         </div>)}
-        
+
       <div className="p-8">
         {/* Back button if a story is open */}
         {selectedStory && (
