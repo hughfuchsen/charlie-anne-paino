@@ -1,16 +1,14 @@
-export const POSTS_QUERY = `*[
-  _type == "writings" && defined(slug.current)
-] | order(publishedAt desc)[0...12] {
+export const POSTS_QUERY = `*[_type == "writings"] | order(publishedAt desc)[0...12] {
   _id,
   title,
-  slug,
   publishedAt,
   image{
     asset->{ url },
     alt
   },
-    body
+  body
 }`;
+
 
 // query.js
 export const ILLUSTRATIONS_QUERY = `*[_type == "illustration"] | order(date desc) {
