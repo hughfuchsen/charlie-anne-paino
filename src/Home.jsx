@@ -281,7 +281,7 @@ function Home() {
       <NavMenu onShuffle={() => setShuffledImages(shuffleArray(images))} />
 
       <div
-        className="bg-white min-h-screen p-4"
+        className="bg-white min-h-screen p-4 pt-0"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',

@@ -9,7 +9,9 @@ export default function ImageCard({ src, alt }) {
           src={src}
           alt={alt}
           className="w-full h-full object-cover"
+          draggable={false}
           loading="lazy"
+          onContextMenu={(e) => e.preventDefault()}
         />
       </div>
     );

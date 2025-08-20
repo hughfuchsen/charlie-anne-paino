@@ -140,10 +140,10 @@ function LiveMusicIllustrations() {
       {/* Image Grid */}
       <div className="p-8 pt-4 space-y-8">
         {orderedImages.length === 0 ? (
-          <div>No results match your filters.</div>
+          <div>no results match your filters :|</div>
         ) : (
           Object.entries(groupedByName).map(([name, imgs]) => (
-            <div key={name}>
+            <div className="lowercase" key={name}>
               <p className="text-sm md:text-xl mb-2">{name}</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {imgs.map((image, idx) => (

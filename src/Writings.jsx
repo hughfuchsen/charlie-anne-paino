@@ -70,7 +70,9 @@ export default function Writings() {
               <img
                 src={selectedStory.image.asset.url}
                 alt={selectedStory.title}
+                draggable={false}
                 className="max-w-[100%] md:max-w-[40%] mb-8"
+                onContextMenu={(e) => e.preventDefault()}
                 />
             )}
             <div className="text-lg md:text-xl leading-loose lowercase">

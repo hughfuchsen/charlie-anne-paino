@@ -39,7 +39,7 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
       </div>
       {/* Real Prev Button */}
       <button
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 pr-0 pb-40 pt-40 pl-20   text-white text-6xl rounded-full opacity-0 sm:opacity-100"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 pr-0 pb-40 lg:pb-6 pt-40 lg:pt-6 pl-20 sm:pr-0 text-white text-6xl rounded-full opacity-0 sm:opacity-100"
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
       >
         ←
@@ -53,7 +53,7 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
       
       {/* Real Next Button */}
       <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 pl-0 pb-40 pt-40 pr-20 sm:pl-0 lg:pr-52  text-white text-6xl rounded-full opacity-0 sm:opacity-100"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 pl-0 pb-40 lg:pb-6 pt-40 lg:pt-6 pr-20 sm:pl-0 text-white text-6xl rounded-full opacity-0 sm:opacity-100"
         onClick={(e) => { e.stopPropagation(); onNext(); }}
       >
         →
@@ -65,9 +65,11 @@ function ExpandedGallery({ images, currentIndex, onClose, onPrev, onNext }) {
           src={img.src}
           alt={img.alt}
           className="max-h-[70vh] max-w-[90vw] object-contain"
+          onContextMenu={(e) => e.preventDefault()}
+          draggable={false}
         />
         {formatCaption(img) && (
-          <p className="text-white mt-4 text-center select-none">
+          <p className="text-white mt-4 text-center select-none lowercase">
             {formatCaption(img)}
           </p>
         )}
