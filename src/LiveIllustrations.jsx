@@ -26,7 +26,7 @@ const groupByCategory = (images) => {
   };
 };
 
-function LiveMusicIllustrations() {
+function LiveIllustrations() {
   const [images, setImages] = useState([]);
   const [activeFilters, setActiveFilters] = useState({ name: [], location: [], date: [] });
   const [openCategory, setOpenCategory] = useState(null);
@@ -179,4 +179,4 @@ function LiveMusicIllustrations() {
   );
 }
 
-export default LiveMusicIllustrations;
+export default LiveIllustrations;

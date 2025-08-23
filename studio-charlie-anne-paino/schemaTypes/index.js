@@ -1,5 +1,5 @@
 import writings from './writings'
-import image from './illustration';
+import image from './illustrations';
 
 export const schemaTypes = [writings, image]
 

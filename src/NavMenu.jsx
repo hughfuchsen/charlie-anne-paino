@@ -192,7 +192,7 @@ function NavMenu({ onShuffle, onResetStory }) {
             {/* Live Illustrations */}
             <div>
               <div
-                className="cursor-pointer flex items-center gap-2 select-none"
+                className="cursor-pointer flex items-center gap-2 select-none pt-1 pb-1 md:pt-0 md:pb-0"
                 onClick={() => handleChildClick('live')}
               >
                 <img
@@ -218,7 +218,7 @@ function NavMenu({ onShuffle, onResetStory }) {
             {/* Writings */}
             <div>
               <div
-                className="cursor-pointer flex items-center gap-2 select-none"
+                className="cursor-pointer flex items-center gap-2 select-none pt-1 pb-1 md:pt-0 md:pb-0"
                 onClick={() => handleChildClick('writings')}
               >
                 <img
