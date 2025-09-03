@@ -82,8 +82,15 @@ function LiveIllustrations() {
     return groups;
   }, {});
 
-  const orderedImages = Object.entries(groupedByName).flatMap(([_name, imgs]) => imgs);
-
+  const orderedImages = Object.entries(groupedByName).flatMap(([name, imgs]) => {
+    return imgs.sort((a, b) => {
+      if (a.order != null && b.order != null) return a.order - b.order;
+      if (a.order != null) return -1; // a goes first
+      if (b.order != null) return 1;  // b goes first
+      return 0; // leave others as-is
+    });
+  });
+  
   const showPrev = () => setStartIndex(i => i === 0 ? orderedImages.length - 1 : i - 1);
   const showNext = () => setStartIndex(i => i === orderedImages.length - 1 ? 0 : i + 1);
 

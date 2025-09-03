@@ -33,7 +33,6 @@
 //       },
 //     ],
 //   };
-
 import { defineType, defineField } from 'sanity'
 
 export default defineType({
@@ -57,6 +56,12 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
+      name: 'order',
+      title: 'Order (optional)',
+      type: 'number',
+      description: 'Use this to manually order photos within the same subject',
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -71,3 +76,4 @@ export default defineType({
     }),
   ],
 })
+
