@@ -8,7 +8,7 @@ const categories = ['name', 'location', 'date'];
 
 const formatMonthYear = (dateString) => {
   const date = new Date(dateString);
-  if (isNaN(date)) return 'Unknown Date';
+  if (isNaN(date)) return 'unknown date';
   return date.toLocaleDateString('en-AU', { year: 'numeric', month: 'long' });
 };
 
@@ -102,7 +102,7 @@ function LiveIllustrations() {
             className={`border border-black px-3 py-1 text-sm md:text-xl transition select-none
               ${openCategory === category ? 'bg-black text-white' : 'text-black bg-white'}`}
           >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
+            {category.charAt(0).toLowerCase() + category.slice(1)}
           </button>
         ))}
       </div>
