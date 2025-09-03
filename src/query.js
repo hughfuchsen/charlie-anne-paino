@@ -10,7 +10,6 @@ export const POSTS_QUERY = `*[_type == "writings"] | order(publishedAt desc)[0..
 }`;
 
 
-// query.js
 export const ILLUSTRATIONS_QUERY = `*[_type == "illustrations"] | order(date desc) {
   _id,
   subject,
