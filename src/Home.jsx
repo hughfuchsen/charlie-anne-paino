@@ -24,7 +24,7 @@ function Home() {
   }, []);
 
   const sizedImages = useMemo(
-    () => shuffledImages.map(img => ({ ...img, isLarge: Math.random() < 0.1 })),
+    () => shuffledImages.map(img => ({ ...img, isLarge: Math.random() < 0.15 })),
     [shuffledImages]
   );
 
