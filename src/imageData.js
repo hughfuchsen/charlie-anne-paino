@@ -13,8 +13,6 @@ export async function fetchImages() {
     alt: img.image.alt || '',
     name: img.subject || '',
     location: img.location || '',
-    date: img.date
-      ? new Date(img.date).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })
-      : '',
+    date: img.date || null,
   }));
 }
