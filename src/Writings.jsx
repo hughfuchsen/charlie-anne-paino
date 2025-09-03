@@ -71,7 +71,7 @@ export default function Writings() {
                 src={selectedStory.image.asset.url}
                 alt={selectedStory.title}
                 draggable={false}
-                className="max-w-[100%] md:max-w-[40%] mb-8"
+                className="max-w-[100%] md:max-w-[40%] mb-8 select-none"
                 onContextMenu={(e) => e.preventDefault()}
                 />
             )}
