@@ -14,7 +14,7 @@ export const ILLUSTRATIONS_QUERY = `*[_type == "illustrations"] | order(date des
   _id,
   subject,
   location,
-  date,
+  publishedAt,
   image{
     asset->{ url },
     alt

@@ -99,7 +99,7 @@ function LiveIllustrations() {
           <button
             key={category}
             onClick={() => toggleCategory(category)}
-            className={`border border-black px-3 py-1 text-sm md:text-xl transition
+            className={`border border-black px-3 py-1 text-sm md:text-xl transition select-none
               ${openCategory === category ? 'bg-black text-white' : 'text-black bg-white'}`}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -109,7 +109,7 @@ function LiveIllustrations() {
 
       {/* Filter Options */}
       {openCategory && (
-        <div className="p-8 pt-4 flex flex-wrap gap-2">
+        <div className="p-8 pt-4 flex flex-wrap gap-2 select-none">
           {filterOptions[openCategory].map(value => (
             <button
               key={value}
@@ -127,13 +127,13 @@ function LiveIllustrations() {
       <div className="px-8 flex flex-wrap gap-2">
         {categories.flatMap(category =>
           activeFilters[category].map(value => (
-            <div key={`${category}-${value}`} className="bg-red-700 text-white text-xs md:text-sm px-3 py-1 rounded-full flex items-start gap-2">
+            <div key={`${category}-${value}`} className="bg-red-700 text-white text-xs md:text-sm px-3 py-1 rounded-full flex items-start gap-2 select-none">
               <button onClick={() => clearFilter(category, value)} className="text-white">{value} &times;</button>
             </div>
           ))
         )}
         {categories.some(cat => activeFilters[cat].length > 0) && (
-          <button onClick={clearAllFilters} className="text-xs text-red-700 border border-red-700 px-3 py-1 rounded-full">✕ Clear</button>
+          <button onClick={clearAllFilters} className="text-xs text-red-700 border border-red-700 px-3 py-1 rounded-full select-none">✕ Clear</button>
         )}
       </div>
 
