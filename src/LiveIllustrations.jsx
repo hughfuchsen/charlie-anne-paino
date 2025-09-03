@@ -79,6 +79,8 @@ function LiveIllustrations() {
     const groupName = image.name || 'Unknown Name';
     if (!groups[groupName]) groups[groupName] = [];
     groups[groupName].push(image);
+    // sort the group by order (ascending)
+    groups[groupName].sort((a, b) => (a.order || 0) - (b.order || 0));
     return groups;
   }, {});
 
@@ -90,6 +92,8 @@ function LiveIllustrations() {
       return 0; // leave others as-is
     });
   });
+
+
   
   const showPrev = () => setStartIndex(i => i === 0 ? orderedImages.length - 1 : i - 1);
   const showNext = () => setStartIndex(i => i === orderedImages.length - 1 ? 0 : i + 1);
