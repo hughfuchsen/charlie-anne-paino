@@ -25,7 +25,7 @@ export const POSTS_QUERY = `*[_type == "writings"] | order(publishedAt desc)[0..
 export const ILLUSTRATIONS_QUERY = `*[_type == "illustrations"] 
   | order(subject asc, coalesce(order, 9999) asc, date desc) {
     _id,
-    subject as name, 
+    subject, 
     location,
     date,
     order,
