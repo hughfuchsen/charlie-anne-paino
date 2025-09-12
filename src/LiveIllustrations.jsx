@@ -276,9 +276,14 @@ function LiveIllustrations() {
     return groups
   }, {})
 
-  // sort each group by order
+  // ensure group is sorted by order, then fallback to date
   Object.values(groupedByName).forEach(group => {
-    group.sort((a, b) => (a.order || 0) - (b.order || 0))
+    group.sort((a, b) => {
+      if (a.order != null && b.order != null) return a.order - b.order
+      if (a.order != null) return -1
+      if (b.order != null) return 1
+      return new Date(b.date) - new Date(a.date) // fallback: newest first
+    })
   })
 
   // flatten for gallery
