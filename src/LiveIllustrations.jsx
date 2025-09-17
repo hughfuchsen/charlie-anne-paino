@@ -1,102 +1,101 @@
-// import React, { useState, useEffect } from 'react';
-// import NavMenu from './NavMenu';
-// import ImageCard from './ImageCard';
-// import ExpandedGallery from './ExpandedGallery';
-// import { fetchImages } from './imageData.js'; // fetches from Sanity
 
-// const categories = ['name', 'location', 'date'];
+// import React, { useState, useEffect } from 'react'
+// import NavMenu from './NavMenu'
+// import ImageCard from './ImageCard'
+// import ExpandedGallery from './ExpandedGallery'
+// import { fetchImages } from './imageData.js' // fetches from Sanity
+
+// const categories = ['name', 'location', 'date']
 
 // const formatMonthYear = (dateString) => {
-//   const date = new Date(dateString);
-//   if (isNaN(date)) return 'unknown date';
-//   return date.toLocaleDateString('en-AU', { year: 'numeric', month: 'long' });
-// };
+//   const date = new Date(dateString)
+//   if (isNaN(date)) return 'unknown date'
+//   return date.toLocaleDateString('en-AU', { year: 'numeric', month: 'long' })
+// }
 
 // const groupByCategory = (images) => {
-//   const options = { name: new Set(), location: new Set(), date: new Set() };
+//   const options = { name: new Set(), location: new Set(), date: new Set() }
 //   images.forEach(img => {
-//     if (img.name) options.name.add(img.name);
-//     if (img.location) options.location.add(img.location);
-//     if (img.date) options.date.add(formatMonthYear(img.date));
-//   });
+//     if (img.name) options.name.add(img.name)
+//     if (img.location) options.location.add(img.location)
+//     if (img.date) options.date.add(formatMonthYear(img.date))
+//   })
 //   return {
 //     name: Array.from(options.name).sort(),
 //     location: Array.from(options.location).sort(),
 //     date: Array.from(options.date).sort(),
-//   };
-// };
+//   }
+// }
 
 // function LiveIllustrations() {
-//   const [images, setImages] = useState([]);
-//   const [activeFilters, setActiveFilters] = useState({ name: [], location: [], date: [] });
-//   const [openCategory, setOpenCategory] = useState(null);
-//   const [isExpanded, setIsExpanded] = useState(false);
-//   const [startIndex, setStartIndex] = useState(0);
+//   const [images, setImages] = useState([])
+//   const [activeFilters, setActiveFilters] = useState({ name: [], location: [], date: [] })
+//   const [openCategory, setOpenCategory] = useState(null)
+//   const [isExpanded, setIsExpanded] = useState(false)
+//   const [startIndex, setStartIndex] = useState(0)
 
 //   useEffect(() => {
-//     fetchImages().then(setImages);
-//   }, []);
+//     fetchImages().then(setImages)
+//   }, [])
 
 //   useEffect(() => {
-//     document.body.style.overflow = isExpanded ? 'hidden' : '';
-//     return () => { document.body.style.overflow = ''; };
-//   }, [isExpanded]);
+//     document.body.style.overflow = isExpanded ? 'hidden' : ''
+//     return () => { document.body.style.overflow = '' }
+//   }, [isExpanded])
 
-//   const filterOptions = groupByCategory(images);
+//   const filterOptions = groupByCategory(images)
 
-//   const toggleCategory = (category) => setOpenCategory(prev => prev === category ? null : category);
+//   const toggleCategory = (category) => setOpenCategory(prev => prev === category ? null : category)
 
 //   const toggleFilter = (category, value) => {
 //     setActiveFilters(prev => {
-//       const alreadySelected = prev[category].includes(value);
+//       const alreadySelected = prev[category].includes(value)
 //       return {
 //         ...prev,
 //         [category]: alreadySelected
 //           ? prev[category].filter(v => v !== value)
 //           : [...prev[category], value],
-//       };
-//     });
-//   };
+//       }
+//     })
+//   }
 
 //   const clearFilter = (category, value) => {
-//     setActiveFilters(prev => ({ ...prev, [category]: prev[category].filter(v => v !== value) }));
-//   };
+//     setActiveFilters(prev => ({ ...prev, [category]: prev[category].filter(v => v !== value) }))
+//   }
 
-//   const filterImages = (img) => {
-//     return categories.every(cat => {
-//       if (!activeFilters[cat].length) return true;
-//       const val = cat === 'date' ? formatMonthYear(img.date) : img[cat];
-//       return activeFilters[cat].includes(val);
-//     });
-//   };
+//   const clearAllFilters = () => setActiveFilters({ name: [], location: [], date: [] })
 
-//   const filteredImages = images.filter(filterImages);
+//   const filterImages = (img) => categories.every(cat => {
+//     if (!activeFilters[cat].length) return true
+//     const val = cat === 'date' ? formatMonthYear(img.date) : img[cat]
+//     return activeFilters[cat].includes(val)
+//   })
 
-//   const clearAllFilters = () => setActiveFilters({ name: [], location: [], date: [] });
+//   const filteredImages = images.filter(filterImages)
 
-//   // Group filtered images by name
-//   const groupedByName = filteredImages.reduce((groups, image) => {
-//     const groupName = image.name || 'Unknown Name';
-//     if (!groups[groupName]) groups[groupName] = [];
-//     groups[groupName].push(image);
-//     // sort the group by order (ascending)
-//     groups[groupName].sort((a, b) => (a.order || 0) - (b.order || 0));
-//     return groups;
-//   }, {});
+//   // group by name
+//   const groupedByName = filteredImages.reduce((groups, img) => {
+//     const groupName = img.name || 'unknown name'
+//     if (!groups[groupName]) groups[groupName] = []
+//     groups[groupName].push(img)
+//     return groups
+//   }, {})
 
-//   const orderedImages = Object.entries(groupedByName).flatMap(([name, imgs]) => {
-//     return imgs.sort((a, b) => {
-//       if (a.order != null && b.order != null) return a.order - b.order;
-//       if (a.order != null) return -1; // a goes first
-//       if (b.order != null) return 1;  // b goes first
-//       return 0; // leave others as-is
-//     });
-//   });
+//   // ensure group is sorted by order, then fallback to date
+//   Object.values(groupedByName).forEach(group => {
+//     group.sort((a, b) => {
+//       if (a.order != null && b.order != null) return a.order - b.order
+//       if (a.order != null) return -1
+//       if (b.order != null) return 1
+//       return new Date(b.date) - new Date(a.date) // fallback: newest first
+//     })
+//   })
 
+//   // flatten for gallery
+//   const orderedImages = Object.values(groupedByName).flat()
 
-  
-//   const showPrev = () => setStartIndex(i => i === 0 ? orderedImages.length - 1 : i - 1);
-//   const showNext = () => setStartIndex(i => i === orderedImages.length - 1 ? 0 : i + 1);
+//   const showPrev = () => setStartIndex(i => i === 0 ? orderedImages.length - 1 : i - 1)
+//   const showNext = () => setStartIndex(i => i === orderedImages.length - 1 ? 0 : i + 1)
 
 //   return (
 //     <div className="bg-white">
@@ -113,7 +112,7 @@
 //             className={`border border-black px-3 py-1 text-sm md:text-xl transition select-none
 //               ${openCategory === category ? 'bg-black text-white' : 'text-black bg-white'}`}
 //           >
-//             {category.charAt(0).toLowerCase() + category.slice(1)}
+//             {category}
 //           </button>
 //         ))}
 //       </div>
@@ -153,17 +152,41 @@
 //         {orderedImages.length === 0 ? (
 //           <div>no results match your filters :|</div>
 //         ) : (
-//           Object.entries(groupedByName).map(([name, imgs]) => (
+//           // Object.entries(groupedByName).map(([name, imgs]) => (
+//           Object.entries(groupedByName)
+//           .sort(([aName, aImgs], [bName, bImgs]) => {
+//             const getEarliest = (imgs) => {
+//               const times = imgs
+//                 .map(img => {
+//                   const d = new Date(img.date)
+//                   if (isNaN(d)) return NaN
+//                   // strip time-of-day
+//                   return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
+//                 })
+//                 .filter(t => !isNaN(t))
+        
+//               return times.length > 0 ? Math.min(...times) : Infinity
+//             }
+        
+//             const aDate = getEarliest(aImgs)
+//             const bDate = getEarliest(bImgs)
+        
+//             // For debugging:
+//             console.log(`Comparing ${aName} (${aDate}) vs ${bName} (${bDate})`)
+        
+//             return aDate - bDate // earliest → latest
+//           })
+//           .map(([name, imgs]) => (
 //             <div className="lowercase" key={name}>
 //               <p className="text-sm md:text-xl mb-2">{name}</p>
 //               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-//                 {imgs.map((image, idx) => (
+//                 {imgs.map((image) => (
 //                   <div
 //                     key={image.id}
 //                     onClick={() => {
-//                       const index = orderedImages.findIndex(img => img.id === image.id);
-//                       setStartIndex(index);
-//                       setIsExpanded(true);
+//                       const index = orderedImages.findIndex(img => img.id === image.id)
+//                       setStartIndex(index)
+//                       setIsExpanded(true)
 //                     }}
 //                     className="cursor-pointer"
 //                   >
@@ -172,7 +195,7 @@
 //                 ))}
 //               </div>
 //             </div>
-//           ))
+//           ))          
 //         )}
 //       </div>
 
@@ -187,13 +210,10 @@
 //         />
 //       )}
 //     </div>
-//   );
+//   )
 // }
 
-// export default LiveIllustrations;
-
-
-
+// export default LiveIllustrations
 import React, { useState, useEffect } from 'react'
 import NavMenu from './NavMenu'
 import ImageCard from './ImageCard'
@@ -276,7 +296,7 @@ function LiveIllustrations() {
     return groups
   }, {})
 
-  // ensure group is sorted by order, then fallback to date
+  // sort images within each group (existing logic)
   Object.values(groupedByName).forEach(group => {
     group.sort((a, b) => {
       if (a.order != null && b.order != null) return a.order - b.order
@@ -286,8 +306,31 @@ function LiveIllustrations() {
     })
   })
 
-  // flatten for gallery
-  const orderedImages = Object.values(groupedByName).flat()
+  // helper: get earliest date in a group, ignoring time
+  const getEarliest = (imgs) => {
+    const times = imgs
+      .map(img => {
+        const d = new Date(img.date)
+        if (isNaN(d)) return NaN
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
+      })
+      .filter(t => !isNaN(t))
+    return times.length > 0 ? Math.min(...times) : Infinity
+  }
+
+  // sort groups by earliest date, push groups with no valid date to the end
+  const orderedGroups = Object.entries(groupedByName).sort(
+    ([, aImgs], [, bImgs]) => {
+      const aDate = getEarliest(aImgs)
+      const bDate = getEarliest(bImgs)
+      if (aDate === Infinity && bDate === Infinity) return 0
+      if (aDate === Infinity) return 1
+      if (bDate === Infinity) return -1
+      return aDate - bDate // earliest → latest
+    }
+  )
+
+  const orderedImages = orderedGroups.flatMap(([, imgs]) => imgs)
 
   const showPrev = () => setStartIndex(i => i === 0 ? orderedImages.length - 1 : i - 1)
   const showNext = () => setStartIndex(i => i === orderedImages.length - 1 ? 0 : i + 1)
@@ -347,7 +390,7 @@ function LiveIllustrations() {
         {orderedImages.length === 0 ? (
           <div>no results match your filters :|</div>
         ) : (
-          Object.entries(groupedByName).map(([name, imgs]) => (
+          orderedGroups.map(([name, imgs]) => (
             <div className="lowercase" key={name}>
               <p className="text-sm md:text-xl mb-2">{name}</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
