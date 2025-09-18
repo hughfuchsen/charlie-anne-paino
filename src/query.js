@@ -23,17 +23,19 @@ export const POSTS_QUERY = `*[_type == "writings"] | order(publishedAt desc)[0..
 // }`;
 
 export const ILLUSTRATIONS_QUERY = `*[_type == "illustrations"] 
-  | order(subject asc, coalesce(order, 9999) asc, date desc) {
+  | order(coalesce(lineUpOrder, 9999) asc, coalesce(order, 9999) asc, date desc) {
     _id,
     subject, 
     location,
     date,
     order,
+    lineUpOrder,
     image{
       asset->{ url },
       alt
     }
   }`
+
 
 
 
