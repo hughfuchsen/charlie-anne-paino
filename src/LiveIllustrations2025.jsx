@@ -132,7 +132,7 @@ function LiveIllustrations2025() {
     <div className="bg-white">
       <NavMenu />
 
-      <div className="p-8 pt-0 text-2xl md:text-5xl">live illustrations 2025</div>
+      <div className="p-8 pt-0 text-2xl md:text-5xl">live illustrations</div>
 
       {/* Category Filter Buttons */}
       <div className="flex flex-wrap p-8 pb-4 pt-0 gap-4">
