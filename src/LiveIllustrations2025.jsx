@@ -244,10 +244,17 @@ function LiveIllustrations2025() {
   }, [isExpanded]);
 
   // build filter options dynamically
+  // 1️⃣ Filter by year first
+  const filteredByYear = images.filter(img => {
+    const d = new Date(img.date);
+    return !isNaN(d) && d.getFullYear() === 2025;
+  });
+
+  // 2️⃣ Then build filter options from the filtered images
   const filterOptions = categories.reduce((acc, cat) => {
     acc[cat] = Array.from(
       new Set(
-        images
+        filteredByYear
           .map(img => cat === 'date' ? formatMonthYear(img.date) : img[cat])
           .filter(Boolean)
       )

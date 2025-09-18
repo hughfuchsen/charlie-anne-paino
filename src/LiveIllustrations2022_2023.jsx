@@ -278,10 +278,29 @@ function LiveIllustrations2022_2023() {
     return () => { document.body.style.overflow = ''; }
   }, [isExpanded]);
 
+  
+  // -----------------------------
+  // Filter to 2022 & 2023 first
+  // -----------------------------
+  const filteredByYear = images.filter(img => {
+    const d = new Date(img.date);
+    if (isNaN(d)) return false;
+    const year = d.getFullYear();
+    return year === 2022 || year === 2023;
+  });
+
+  // Build filter options from filtered images only
   const filterOptions = categories.reduce((acc, cat) => {
-    acc[cat] = Array.from(new Set(images.map(img => cat === 'date' ? formatMonthYear(img.date) : img[cat]).filter(Boolean))).sort();
+    acc[cat] = Array.from(
+      new Set(
+        filteredByYear
+          .map(img => cat === 'date' ? formatMonthYear(img.date) : img[cat])
+          .filter(Boolean)
+      )
+    ).sort();
     return acc;
   }, {});
+
 
   const toggleCategory = (category) => setOpenCategory(prev => prev === category ? null : category);
 
@@ -305,14 +324,6 @@ function LiveIllustrations2022_2023() {
     if (!activeFilters[cat].length) return true;
     const val = cat === 'date' ? formatMonthYear(img.date) : img[cat];
     return activeFilters[cat].includes(val);
-  });
-
-  // Filter to 2022 & 2023
-  const filteredByYear = images.filter(img => {
-    const d = new Date(img.date);
-    if (isNaN(d)) return false;
-    const year = d.getFullYear();
-    return year === 2022 || year === 2023;
   });
 
   const filteredImages = filteredByYear.filter(filterImages);
