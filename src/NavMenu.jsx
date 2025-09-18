@@ -13,7 +13,8 @@ function NavMenu({ onShuffle, onResetStory }) {
                         : location.pathname.startsWith('/writings') ? true
                         : false;
 
-  const initialChild = location.pathname.startsWith('/live') ? 'live'
+  const initialChild = location.pathname.startsWith('/live-2022_2023') ? 'live-2022_2023'
+                    : location.pathname.startsWith('/live-2025') ? 'live-2025'
                     : location.pathname.startsWith('/writings') ? 'writings'
                     : null;
 
@@ -77,7 +78,7 @@ function NavMenu({ onShuffle, onResetStory }) {
               {openChild === 'live' && (
                 <ul className="ml-6 mt-2 space-y-1">
                   <li className="ml-6">
-                    <Link to="/live" className="underline hover:no-underline">
+                    <Link to="/live-2022_2023" className="underline hover:no-underline">
                       2022-2023
                     </Link>
                   </li>
