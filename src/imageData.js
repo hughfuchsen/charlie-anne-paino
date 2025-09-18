@@ -42,7 +42,7 @@ export async function fetchImages() {
     alt: img.image.alt || '',      // maps to image.alt
     name: img.subject || '',       // used in UI filters and group headers
     location: img.location || '',
-    imageOrder: img.imageOrder ?? null,
+    imageOrder: img.order ?? null,
     lineUpOrder: img.lineUpOrder ?? null,
     date: img.date || '',          // keep as ISO string for filtering/sorting
   }));
