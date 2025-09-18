@@ -26,7 +26,7 @@ const groupByCategory = (images) => {
   }
 }
 
-function LiveIllustrations() {
+function LiveIllustrations2025() {
   const [images, setImages] = useState([])
   const [activeFilters, setActiveFilters] = useState({ name: [], location: [], date: [] })
   const [openCategory, setOpenCategory] = useState(null)
@@ -70,16 +70,17 @@ function LiveIllustrations() {
     return activeFilters[cat].includes(val)
   })
 
-  // filter images to only 2022 & 2023
+  // -----------------------------
+  // NEW: only show images from 2025
+  // -----------------------------
   const filteredByYear = images.filter(img => {
     const d = new Date(img.date)
-    if (isNaN(d)) return false  // discard invalid dates
-    const year = d.getFullYear()
-    return year === 2022 || year === 2023
+    if (isNaN(d)) return false
+    return d.getFullYear() === 2025
   })
 
-  // now apply your existing active filter logic on top of this
   const filteredImages = filteredByYear.filter(filterImages)
+  // -----------------------------
 
   // group by name
   const groupedByName = filteredImages.reduce((groups, img) => {
@@ -89,17 +90,16 @@ function LiveIllustrations() {
     return groups
   }, {})
 
-  // sort images within each group (existing logic)
+  // sort images within each group
   Object.values(groupedByName).forEach(group => {
     group.sort((a, b) => {
       if (a.order != null && b.order != null) return a.order - b.order
       if (a.order != null) return -1
       if (b.order != null) return 1
-      return new Date(b.date) - new Date(a.date) // fallback: newest first
+      return new Date(b.date) - new Date(a.date)
     })
   })
 
-  // helper: get earliest date in a group, ignoring time
   const getEarliest = (imgs) => {
     const times = imgs
       .map(img => {
@@ -111,7 +111,7 @@ function LiveIllustrations() {
     return times.length > 0 ? Math.min(...times) : Infinity
   }
 
-  // sort groups by earliest date, push groups with no valid date to the end
+  // sort groups by earliest date
   const orderedGroups = Object.entries(groupedByName).sort(
     ([, aImgs], [, bImgs]) => {
       const aDate = getEarliest(aImgs)
@@ -119,7 +119,7 @@ function LiveIllustrations() {
       if (aDate === Infinity && bDate === Infinity) return 0
       if (aDate === Infinity) return 1
       if (bDate === Infinity) return -1
-      return aDate - bDate // earliest → latest
+      return aDate - bDate
     }
   )
 
@@ -132,7 +132,7 @@ function LiveIllustrations() {
     <div className="bg-white">
       <NavMenu />
 
-      <div className="p-8 pt-0 text-2xl md:text-5xl">live illustrations</div>
+      <div className="p-8 pt-0 text-2xl md:text-5xl">live illustrations 2025</div>
 
       {/* Category Filter Buttons */}
       <div className="flex flex-wrap p-8 pb-4 pt-0 gap-4">
@@ -220,4 +220,4 @@ function LiveIllustrations() {
   )
 }
 
-export default LiveIllustrations
+export default LiveIllustrations2025

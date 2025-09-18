@@ -81,6 +81,11 @@ function NavMenu({ onShuffle, onResetStory }) {
                       2022-2023
                     </Link>
                   </li>
+                  <li className="ml-6">
+                    <Link to="/live-2025" className="underline hover:no-underline">
+                      2025
+                    </Link>
+                  </li>               
                 </ul>
               )}
             </div>
