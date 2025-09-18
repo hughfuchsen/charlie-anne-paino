@@ -380,7 +380,7 @@ function LiveIllustrations2022_2023() {
     <div className="bg-white">
       <NavMenu />
 
-      <div className="p-8 pt-0 text-2xl md:text-5xl">live illustrations</div>
+      <div className="p-8 pt-0 text-2xl md:text-5xl">live illustrations 2022-2023</div>
 
       {/* Category Filter Buttons */}
       <div className="flex flex-wrap p-8 pb-4 pt-0 gap-4">
