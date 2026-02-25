@@ -24,8 +24,26 @@ export const ILLUSTRATIONS_QUERY = `*[_type == "illustrations"]
   }
 }`
 
+// export const DRAWINGS_QUERY = `*[_type == "drawings"] 
+// | order(coalesce(lineUpOrder, 9999) asc, coalesce(order, 9999) asc, date desc) {
+//   _id,
+//   subject,
+//   location,
+//   date,
+//   order,
+//   lineUpOrder,
+//   image{
+//     asset->{ url },
+//     alt
+//   }
+// }`
+
 export const DRAWINGS_QUERY = `*[_type == "drawings"] 
-| order(coalesce(lineUpOrder, 9999) asc, coalesce(order, 9999) asc, date desc) {
+| order(
+    coalesce(lineUpOrder, 9999) asc,
+    coalesce(order, 9999) asc,
+    date desc
+  ) {
   _id,
   subject,
   location,
@@ -33,10 +51,10 @@ export const DRAWINGS_QUERY = `*[_type == "drawings"]
   order,
   lineUpOrder,
   image{
-    asset->{ url },
+    asset->{url},
     alt
   }
-}`
+}`;
 
 
 // export const DRAWINGS_QUERY = `*[_type == "drawings"] 
