@@ -25,9 +25,9 @@ export async function fetchDrawings() {
     id: img._id,
     src: img.image?.asset?.url,
     alt: img.image?.alt || '',
-    name: img.name || '',          // drawings field
+    name: img.subject || '',          // drawings field
     location: img.location || '',
-    imageOrder: img.imageOrder ?? null,
+    imageOrder: img.order ?? null,
     lineUpOrder: img.lineUpOrder ?? null,
     date: img.date || '',
   }));
