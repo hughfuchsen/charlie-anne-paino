@@ -144,13 +144,15 @@ function NavMenu({ onShuffle, onResetStory }) {
 
   // Drawer open state
   const [isOpen, setIsOpen] = useState(() =>
-    location.pathname.startsWith('/live') || location.pathname.startsWith('/writings')
+    location.pathname.startsWith('/live') || location.pathname.startsWith('/writings' || location.pathname.startsWith('/about-me') )
   );
 
   // Which child drawer is open
   const [openChild, setOpenChild] = useState(() => {
-    if (location.pathname.startsWith('/live-2022_2023') || location.pathname.startsWith('/live-2025')) return 'live';
+    if (location.pathname.startsWith('/live-2022_2023') || location.pathname.startsWith('/live-2025')|| location.pathname.startsWith('/live')) return 'live';
     if (location.pathname.startsWith('/writings')) return 'writings';
+    if (location.pathname.startsWith('/drawings')) return 'drawings';
+    if (location.pathname.startsWith('/about-me')) return 'about-me';
     return null;
   });
 
@@ -162,6 +164,12 @@ function NavMenu({ onShuffle, onResetStory }) {
     } else if (location.pathname.startsWith('/writings')) {
       setIsOpen(true);
       setOpenChild('writings');
+    } else if (location.pathname.startsWith('/drawings')) {
+      setIsOpen(true);
+      setOpenChild('drawings');
+    } else if (location.pathname.startsWith('/about-me')) {
+      setIsOpen(true);
+      setOpenChild('about-me');
     } else {
       setOpenChild(null);
     }
@@ -228,7 +236,7 @@ function NavMenu({ onShuffle, onResetStory }) {
                     <Link to="/live-2025" className="underline hover:no-underline">
                       2025
                     </Link>
-                  </li>               
+                  </li>                                        
                 </ul>
               )}
             </div>
@@ -244,9 +252,17 @@ function NavMenu({ onShuffle, onResetStory }) {
                   alt="briefcase"
                   className={`w-4 h-4 transition-transform duration-200 ${openChild === 'writings' ? 'rotate-90' : ''}`}
                 />
-                writings
+                {/* // go straight to it unless charlie wants to categorise... then use the open briefcase vibe.
+                // same goes for drawings or any other link with only one category option */}
+                <Link
+                      to="/writings"
+                      className=""
+                      onClick={() => onResetStory()}
+                    >
+                      writings
+                </Link>
               </div>
-              {openChild === 'writings' && (
+              {/* {openChild === 'writings' && (
                 <ul className="ml-6 mt-2 space-y-1">
                   <li className="ml-6 pb-4 md:pt-0 md:pb-0">
                     <Link
@@ -258,7 +274,63 @@ function NavMenu({ onShuffle, onResetStory }) {
                     </Link>
                   </li>
                 </ul>
-              )}
+              )} */}
+            </div>
+            
+            {/* Drawings */}
+            <div>
+              <div
+                className="cursor-pointer flex items-center gap-2 select-none pt-4 pb-4 md:pt-0 md:pb-0"
+                onClick={() => handleChildClick('drawings')}
+              >
+                <img
+                  src={briefcase}
+                  alt="briefcase"
+                  className={`w-4 h-4 transition-transform duration-200 ${openChild === 'drawings' ? 'rotate-90' : ''}`}
+                />
+                <Link
+                      to="/drawings"
+                      className=""
+                      onClick={() => onResetStory()}
+                    >
+                      drawings
+                </Link>
+              </div>
+              {/* {openChild === 'drawings' && (
+                <ul className="ml-6 mt-2 space-y-1">
+                  <li className="ml-6 pb-4 md:pt-0 md:pb-0">
+                    <Link to="/drawings" className="underline hover:no-underline">
+                      drawings
+                    </Link>
+                  </li>   
+                </ul>
+              )} */}
+            </div>
+           
+            {/* AboutMe */}
+            <div>
+              <div
+                className="cursor-pointer flex items-center gap-2 select-none pt-4 pb-4 md:pt-0 md:pb-0"
+                onClick={() => handleChildClick('about-me')}
+              >
+                <img
+                  src={briefcase}
+                  alt="briefcase"
+                  className={`w-4 h-4 transition-transform duration-200 ${openChild === 'about-me' ? 'rotate-90' : ''}`}
+                />
+                <Link to="/about-me">
+                      about me
+                </Link>
+              </div>
+              {/* {openChild === 'about-me' && (
+                <ul className="ml-6 mt-2 space-y-1">
+                  <li className="ml-6 pb-4 md:pt-0 md:pb-0">
+                    <Link to="/about-me" className="underline hover:no-underline">
+                      about me
+                    </Link>
+                  </li>   
+                </ul>
+              )} */}
             </div>
           </ul>
         )}

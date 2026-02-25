@@ -1,37 +1,7 @@
 // imageData.js
 import { client } from './sanityClient';
-import { ILLUSTRATIONS_QUERY } from './query';
-
+import { ILLUSTRATIONS_QUERY, DRAWINGS_QUERY } from './query';
 // Fetch images from Sanity
-// export async function fetchImages() {
-//   const data = await client.fetch(ILLUSTRATIONS_QUERY);
-
-//   // Map to your grid-friendly format
-//   return data.map(img => ({
-//     id: img._id,
-//     src: img.image.asset.url,
-//     alt: img.image.alt || '',
-//     name: img.subject || '',
-//     location: img.location || '',
-//     date: img.date || null,
-//   }));
-// }
-
-
-// export async function fetchImages() {
-//   const data = await client.fetch(ILLUSTRATIONS_QUERY);
-
-//   return data.map(img => ({
-//     _id: img._id,
-//     image: img.image || {},
-//     subject: img.subject || '',
-//     location: img.location || '',
-//     date: img.date ? new Date(img.date) : null,
-//     order: img.order ?? null,
-//     lineUpOrder: img.lineUpOrder ?? null,
-//   }));
-// }
-
 
 export async function fetchImages() {
   const data = await client.fetch(ILLUSTRATIONS_QUERY);
@@ -45,5 +15,20 @@ export async function fetchImages() {
     imageOrder: img.order ?? null,
     lineUpOrder: img.lineUpOrder ?? null,
     date: img.date || '',          // keep as ISO string for filtering/sorting
+  }));
+}
+
+export async function fetchDrawings() {
+  const data = await client.fetch(DRAWINGS_QUERY);
+
+  return data.map(img => ({
+    id: img._id,
+    src: img.image?.asset?.url,
+    alt: img.image?.alt || '',
+    name: img.name || '',          // drawings field
+    location: img.location || '',
+    imageOrder: img.imageOrder ?? null,
+    lineUpOrder: img.lineUpOrder ?? null,
+    date: img.date || '',
   }));
 }
