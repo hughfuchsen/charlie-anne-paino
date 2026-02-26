@@ -109,8 +109,8 @@ function NavMenu({ onShuffle, onResetStory }) {
             {/* Writings */}
             <div>
               <div
-                className="cursor-pointer flex items-center gap-2 select-none pt-4 pb-4 md:pt-0 md:pb-0"
-                onClick={() => handleChildClick(null)}
+                className="cursor-pointer flex items-center gap-2 select-none"
+                onClick={() => handleChildClick('writings')}
               >
                 <img
                   src={briefcase}
@@ -121,7 +121,7 @@ function NavMenu({ onShuffle, onResetStory }) {
                 // same goes for drawings or any other link with only one category option */}
                 <Link
                       to="/writings"
-                      className=""
+                      className="pt-4 pb-4 md:pt-0 md:pb-0"
                       onClick={() => onResetStory()}
                     >
                       writings
@@ -145,8 +145,8 @@ function NavMenu({ onShuffle, onResetStory }) {
             {/* Drawings */}
             <div>
               <div
-                className="cursor-pointer flex items-center gap-2 select-none pt-4 pb-4 md:pt-0 md:pb-0"
-                onClick={() => handleChildClick(null)}
+                className="cursor-pointer flex items-center gap-2 select-none"
+                onClick={() => handleChildClick('drawings')}
               >
                 <img
                   src={briefcase}
@@ -155,7 +155,7 @@ function NavMenu({ onShuffle, onResetStory }) {
                 />
                 <Link
                       to="/drawings"
-                      className=""
+                      className="pt-4 pb-4 md:pt-0 md:pb-0"
                       onClick={() => onResetStory()}
                     >
                       drawings
@@ -175,15 +175,16 @@ function NavMenu({ onShuffle, onResetStory }) {
             {/* AboutMe */}
             <div>
               <div
-                className="cursor-pointer flex items-center gap-2 select-none pt-4 pb-4 md:pt-0 md:pb-0"
-                onClick={() => handleChildClick(null)}
+                className="cursor-pointer flex items-center gap-2 select-none"
+                onClick={() => handleChildClick('about-me')}
               >
                 <img
                   src={briefcase}
                   alt="briefcase"
                   className={`w-4 h-4 transition-transform duration-200 ${openChild === 'about-me' ? 'rotate-90' : ''}`}
                 />
-                <Link to="/about-me">
+                <Link to="/about-me"
+                className="pt-4 pb-4 md:pt-0 md:pb-0">
                       about me
                 </Link>
               </div>
