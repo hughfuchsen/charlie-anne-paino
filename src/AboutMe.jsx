@@ -1,3 +1,5 @@
+
+
 // import React, { useEffect, useState } from 'react';
 // import { client } from './sanityClient';
 // import { ABOUT_ME_QUERY } from './query';
@@ -8,7 +10,9 @@
 //   const [about, setAbout] = useState(null);
 
 //   useEffect(() => {
-//     client.fetch(ABOUT_ME_QUERY).then(setAbout).catch(console.error);
+//     client.fetch(ABOUT_ME_QUERY)
+//       .then(setAbout)
+//       .catch(console.error);
 //   }, []);
 
 //   const portableComponents = {
@@ -40,22 +44,27 @@
 //     },
 //   };
 
-//   if (!about) return null; // or loading state
-
-//   return (
-//     <div className="bg-white min-h-screen">
-//       <NavMenu />
-
-//       <div className="p-8 pt-0 text-3xl md:text-5xl">
-//         {about.title || 'about me'}
-//       </div>
+//   // Render placeholder instead of returning null
+//   const content = about ? (
+//     <>
+//       <div className="p-8 pt-0 text-3xl md:text-5xl">{about.title || 'about me'}</div>
 
 //       <div className="p-8 pt-0 text-lg md:text-xl leading-loose lowercase">
 //         <PortableText value={about.body} components={portableComponents} />
 //       </div>
+//     </>
+//   ) : (
+//     <div className="p-8 text-lg">Loading…</div>
+//   );
+
+//   return (
+//     <div className="bg-white min-h-screen">
+//       <NavMenu />
+//       {content}
 //     </div>
 //   );
 // }
+
 
 import React, { useEffect, useState } from 'react';
 import { client } from './sanityClient';
@@ -67,27 +76,19 @@ export default function AboutMe() {
   const [about, setAbout] = useState(null);
 
   useEffect(() => {
-    client.fetch(ABOUT_ME_QUERY)
-      .then(setAbout)
-      .catch(console.error);
+    client.fetch(ABOUT_ME_QUERY).then(setAbout).catch(console.error);
   }, []);
 
   const portableComponents = {
     block: {
       normal: ({ children }) => (
-        <p style={{ marginBottom: '1em', lineHeight: '1.6' }}>
-          {children}
-        </p>
+        <p style={{ marginBottom: '1em', lineHeight: '1.6' }}>{children}</p>
       ),
       h1: ({ children }) => (
-        <h1 style={{ fontSize: '2rem', margin: '1.5em 0 0.5em 0' }}>
-          {children}
-        </h1>
+        <h1 style={{ fontSize: '2rem', margin: '1.5em 0 0.5em 0' }}>{children}</h1>
       ),
       h2: ({ children }) => (
-        <h2 style={{ fontSize: '1.5rem', margin: '1.5em 0 0.5em 0' }}>
-          {children}
-        </h2>
+        <h2 style={{ fontSize: '1.5rem', margin: '1.5em 0 0.5em 0' }}>{children}</h2>
       ),
     },
     types: {
@@ -101,23 +102,22 @@ export default function AboutMe() {
     },
   };
 
-  // Render placeholder instead of returning null
-  const content = about ? (
-    <>
-      <div className="p-8 pt-0 text-3xl md:text-5xl">{about.title || 'about me'}</div>
-
-      <div className="p-8 pt-0 text-lg md:text-xl leading-loose lowercase">
-        <PortableText value={about.body} components={portableComponents} />
-      </div>
-    </>
-  ) : (
-    <div className="p-8 text-lg">Loading…</div>
-  );
-
   return (
     <div className="bg-white min-h-screen">
       <NavMenu />
-      {content}
+
+      <div className="p-8 pt-0 text-3xl md:text-5xl">
+        {/* Show title if loaded, fallback to placeholder */}
+        {about?.title || 'about me'}
+      </div>
+
+      <div className="p-8 pt-0 text-lg md:text-xl leading-loose lowercase">
+        {about ? (
+          <PortableText value={about.body} components={portableComponents} />
+        ) : (
+          <p className="text-gray-400">loading...</p>  // placeholder text
+        )}
+      </div>
     </div>
   );
 }
