@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavMenu from './NavMenu';
-import ImageCard from './ImageCard';
+import DrawingsImageCard from './DrawingsImageCard';
 import ExpandedGallery from './ExpandedGallery';
 import { fetchDrawings } from './imageData.js';
 
@@ -27,6 +27,13 @@ export default function Drawings({ years = [], hardcodedOrder = [] }) {
   }, []);
 
   useEffect(() => {
+    fetchDrawings().then(data => {
+      console.log("DRAWINGS DATA:", data);
+      setImages(data);
+    });
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = isExpanded ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isExpanded]);
@@ -35,8 +42,10 @@ export default function Drawings({ years = [], hardcodedOrder = [] }) {
   const filterOptions = categories.reduce((acc, cat) => {
     acc[cat] = Array.from(
       new Set(
-        images
-          .filter(img => years.includes(new Date(img.date).getFullYear()))
+        images.filter(img => {
+          if (!years.length) return true;
+          return years.includes(new Date(img.date).getFullYear());
+        })
           .map(img => cat === 'date' ? formatMonthYear(img.date) : img[cat])
           .filter(Boolean)
       )
@@ -65,11 +74,18 @@ export default function Drawings({ years = [], hardcodedOrder = [] }) {
     return activeFilters[cat].includes(val);
   });
 
-  // Filter images by selected years and active filters
-  const filteredImages = images
-    .filter(img => years.includes(new Date(img.date).getFullYear()))
-    .filter(filterImages);
+  // // Filter images by selected years and active filters
+  // const filteredImages = images
+  //   .filter(img => years.includes(new Date(img.date).getFullYear()))
+  //   .filter(filterImages);
 
+  const filteredImages = images
+  .filter(img => {
+    if (!years.length) return true;
+    return years.includes(new Date(img.date).getFullYear());
+  })
+  .filter(filterImages);
+  
   // Group by name
   const groupedByName = filteredImages.reduce((groups, img) => {
     const groupName = img.name && img.name.trim() !== '' ? img.name : '*Unknown*';
@@ -189,7 +205,7 @@ export default function Drawings({ years = [], hardcodedOrder = [] }) {
                     }}
                     className="cursor-pointer"
                   >
-                    <ImageCard src={image.src} alt={image.alt} />
+                    <DrawingsImageCard src={image.src} alt={image.alt} />
                   </div>
                 ))}
               </div>

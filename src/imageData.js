@@ -24,8 +24,8 @@ export async function fetchDrawings() {
   return data.map(img => ({
     id: img._id,
     src: img.image?.asset?.url,
-    alt: img.image?.alt || '',
-    name: img.subject || '',          // drawings field
+    alt: img.image?.alt || '',        // fallback empty string
+    name: img.subject || '',          // aligns with Illustrations 'subject'
     location: img.location || '',
     imageOrder: img.order ?? null,
     lineUpOrder: img.lineUpOrder ?? null,
