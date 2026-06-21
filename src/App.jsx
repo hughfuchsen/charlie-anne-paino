@@ -47,7 +47,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/writings" element={<Writings />} />
-        <Route path="/live" element={<LiveIllustrations years={[2022, 2023, 2025]} hardcodedOrder={hardcoded2022_2023}/>} />
+        <Route path="/live" element={<LiveIllustrations years={[2022, 2023, 2025, 2026]} hardcodedOrder={hardcoded2022_2023}/>} />
         <Route path="/live-2022_2023" element={<LiveIllustrations years={[2022, 2023]} hardcodedOrder={hardcoded2022_2023}/>} />
         <Route path="/live-2025" element={<LiveIllustrations years={[2025]}/>} />
         <Route path="/live-2026" element={<LiveIllustrations years={[2026]}/>} />
