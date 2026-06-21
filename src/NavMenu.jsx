@@ -14,7 +14,7 @@ function NavMenu({ onShuffle, onResetStory }) {
 
   // Which child drawer is open
   const [openChild, setOpenChild] = useState(() => {
-    if (location.pathname.startsWith('/live-2022_2023') || location.pathname.startsWith('/live-2025')|| location.pathname.startsWith('/live-2026')|| location.pathname.startsWith('/live')) return 'live';
+    if (location.pathname.startsWith('/live-2022_2023') || location.pathname.startsWith('/live-2025') || location.pathname.startsWith('/live-2026')|| location.pathname.startsWith('/live')) return 'live';
     if (location.pathname.startsWith('/writings')) return 'writings';
     if (location.pathname.startsWith('/drawings')) return 'drawings';
     if (location.pathname.startsWith('/about-me')) return 'about-me';
@@ -23,7 +23,7 @@ function NavMenu({ onShuffle, onResetStory }) {
 
   // Keep drawer state in sync if user navigates directly
   useEffect(() => {
-    if (location.pathname.startsWith('/live-2022_2023') || location.pathname.startsWith('/live-2025')) {
+    if (location.pathname.startsWith('/live-2022_2023') || location.pathname.startsWith('/live-2025') || location.pathname.startsWith('/live-2026')) {
       setIsOpen(true);
       setOpenChild('live');
     } else if (location.pathname.startsWith('/writings')) {
