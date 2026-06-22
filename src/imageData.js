@@ -6,15 +6,17 @@ import { ILLUSTRATIONS_QUERY, DRAWINGS_QUERY } from './query';
 export async function fetchImages() {
   const data = await client.fetch(ILLUSTRATIONS_QUERY);
 
-  return data.map(img => ({
-    id: img._id,                  // maps to image.id in the component
-    src: img.image.asset.url,      // maps to image.src
-    alt: img.image.alt || '',      // maps to image.alt
-    name: img.subject || '',       // used in UI filters and group headers
+  return data
+  .filter(img => img.image?.asset?.url)
+  .map(img => ({
+    id: img._id,
+    src: img.image.asset.url,
+    alt: img.image.alt || '',
+    name: img.subject || '',
     location: img.location || '',
     imageOrder: img.order ?? null,
     lineUpOrder: img.lineUpOrder ?? null,
-    date: img.date || '',          // keep as ISO string for filtering/sorting
+    date: img.date || '',
   }));
 }
 
