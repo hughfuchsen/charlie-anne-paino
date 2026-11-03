@@ -1,4 +1,7 @@
 {
     "deno.enable": false,
-    "deno.enablePaths": ["deno"]
+    "deno.enablePaths": [
+      "deno"
+    ],
+    "liveServer.settings.port": 5501
   }

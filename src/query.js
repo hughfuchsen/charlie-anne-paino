@@ -72,6 +72,10 @@ export const DRAWINGS_QUERY = `*[_type == "drawings"]
 export const ABOUT_ME_QUERY = `*[_type == "aboutMe"][0] {
   _id,
   title,
-  body
+  body,
+  image{
+    asset->{ url },
+    alt
+  }
 }`;
 
