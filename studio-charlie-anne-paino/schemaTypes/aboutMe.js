@@ -13,6 +13,14 @@ export default {
         title: 'Body',
         type: 'array',
         of: [{ type: 'block' }]
+      },
+      {
+        name: 'image',
+        title: 'Image',
+        type: 'image',
+        options: {
+          hotspot: true
+        }
       }
     ]
   };
