@@ -111,15 +111,15 @@ export default function AboutMe() {
         {about?.title || 'about me'}
       </div>
 
-      {about?.image && (
+      {about?.image?.asset?.url && (
         <div className="px-8 pb-6">
           <img
-            src={about.image}
-            alt={about.image || 'about me'}
+            src={about.image.asset.url}
+            alt={about.image.alt || 'about me'}
             className="w-full h-auto object-cover"
           />
         </div>
-      )}
+      )}    
       <div className="p-8 pt-0 text-lg md:text-xl leading-loose lowercase">
         {about ? (
           <PortableText value={about.body} components={portableComponents} />
