@@ -112,7 +112,7 @@ export default function AboutMe() {
       </div>
 
       {about?.image?.asset?.url && (
-        <div className="px-8 pb-6">
+        <div className="px-8 pb-6 w-full md:max-w-xl">
           <img
             src={about.image.asset.url}
             alt={about.image.alt || 'about me'}

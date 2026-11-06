@@ -93,8 +93,13 @@ function NavMenu({ onShuffle, onResetStory }) {
               {openChild === 'live' && (
                 <ul className="ml-6 mt-2 space-y-1">
                   <li className="ml-6 pb-4 md:pt-0 md:pb-0">
-                    <Link to="/live-2022_2023" className="underline hover:no-underline">
-                      2022-2023
+                    <Link to="/live-2022" className="underline hover:no-underline">
+                      2022
+                    </Link>
+                  </li>
+                  <li className="ml-6 pb-4 md:pt-0 md:pb-0">
+                    <Link to="/live-2023" className="underline hover:no-underline">
+                      2023
                     </Link>
                   </li>
                   <li className="ml-6 pb-4 md:pt-0 md:pb-0">
