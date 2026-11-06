@@ -23,7 +23,10 @@ function NavMenu({ onShuffle, onResetStory }) {
 
   // Keep drawer state in sync if user navigates directly
   useEffect(() => {
-    if (location.pathname.startsWith('/live-2022_2023') || location.pathname.startsWith('/live-2025') || location.pathname.startsWith('/live-2026')) {
+    if (location.pathname.startsWith('/live-2022') 
+    || location.pathname.startsWith('/live-2023') 
+    || location.pathname.startsWith('/live-2025') 
+    || location.pathname.startsWith('/live-2026')) {
       setIsOpen(true);
       setOpenChild('live');
     } else if (location.pathname.startsWith('/writings')) {
